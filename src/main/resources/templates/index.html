@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alien Time System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #1e215d, #121235);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding-top: 20px;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #61dafb;
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        #alien-clock {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #a8dadc;
+            margin-bottom: 15px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(42, 45, 94, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 20px;
+            padding: 25px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h2, h3 {
+            margin-bottom: 15px;
+            color: #e8f1f2;
+            font-weight: 600;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background-color: rgba(30, 33, 93, 0.8);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        input:hover, input:focus {
+            background-color: rgba(30, 33, 93, 1);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #61dafb, #21a1f1);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        #alarm-list {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        #alarm-list li {
+            background: rgba(57, 65, 130, 0.9);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            font-size: 0.95rem;
+        }
+
+        #alarm-list li button {
+            width: auto;
+            padding: 8px;
+            margin-left: 10px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #e63946, #b83340);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #alarm-list li button:hover {
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .card {
+                width: 95%;
+            }
+
+            input {
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Alien Time System</h1>
+
+    <div class="card">
+        <div id="alien-clock">Loading Alien Time...</div>
+    </div>
+
+    <div class="card">
+        <h2>Set Alien Date and Time</h2>
+        <input type="number" id="year" placeholder="Year (e.g., 2804)">
+        <input type="number" id="month" placeholder="Month (1-18)">
+        <input type="number" id="day" placeholder="Day (e.g., 31)">
+        <input type="number" id="hour" placeholder="Hour (0-35)">
+        <input type="number" id="minute" placeholder="Minute (0-89)">
+        <input type="number" id="second" placeholder="Second (0-89)">
+        <button onclick="setAlienTime()">Set Alien Time</button>
+        <button onclick="convertToEarth()">Convert to Earth Time</button>
+    </div>
+
+    <div class="card">
+        <h2>Convert Earth-Alien Time</h2>
+        <input type="datetime-local" id="earth-time" placeholder="Select Earth Time">
+        <button onclick="convertToAlien()">Convert to Alien</button>
+    </div>
+
+    <div class="card">
+        <h2>Alarm Manager</h2>
+        <h3>Set New Alarm</h3>
+        <input type="number" id="alarm-year" placeholder="Year">
+        <input type="number" id="alarm-month" placeholder="Month">
+        <input type="number" id="alarm-day" placeholder="Day">
+        <input type="number" id="alarm-hour" placeholder="Hour">
+        <input type="number" id="alarm-minute" placeholder="Minute">
+        <input type="number" id="alarm-second" placeholder="Second">
+        <button onclick="addAlarm()">Set Alarm</button>
+
+        <h3>Existing Alarms</h3>
+        <ul id="alarm-list"></ul>
+    </div>
+</body>
+</html>
